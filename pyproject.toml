@@ -1,5 +1,5 @@
 [project]
-name = "brazillian-e-commerce"
+name = "brazillian_e_commerce"
 version = "0.1.0"
 description = ""
 authors = [
@@ -9,7 +9,9 @@ requires-python = ">=3.11"
 dependencies = [
     "sqlalchemy (>=2.0.50,<3.0.0)",
     "psycopg2-binary (>=2.9.12,<3.0.0)",
-    "python-dotenv (>=1.2.2,<2.0.0)"
+    "python-dotenv (>=1.2.2,<2.0.0)",
+    "pandas (>=3.0.3,<4.0.0)",
+    "kagglehub (>=1.0.1,<2.0.0)"
 ]
 
 
