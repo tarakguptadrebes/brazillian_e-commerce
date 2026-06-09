@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS customer_seller_geolocation;
+
+CREATE TABLE customer_seller_geolocation AS
 SELECT
 	oi.order_id,
 	gc.geolocation_lat AS geolocation_lat_customer,
@@ -14,4 +17,6 @@ INNER JOIN sellers_clean AS s
 INNER JOIN geolocation_clean AS gc
 	ON c.customer_zip_code_prefix = gc.geolocation_zip_code_prefix 
 INNER JOIN geolocation_clean AS gs
-	ON s.seller_zip_code_prefix = gs.geolocation_zip_code_prefix
+	ON s.seller_zip_code_prefix = gs.geolocation_zip_code_prefix;
+
+SELECT * FROM customer_seller_geolocation
