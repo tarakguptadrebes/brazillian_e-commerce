@@ -1,6 +1,6 @@
 from brazillian_e_commerce.download_e_commerce_data import download
-from brazillian_e_commerce.run_sql import cleaning
-from brazillian_e_commerce.run_sql import analysis
+from brazillian_e_commerce.clean_data import cleaning
+from brazillian_e_commerce.analyse_data import analysis
 
 def main():
     

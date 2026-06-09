@@ -31,22 +31,4 @@ def cleaning():
 
 if __name__ == '__main__':
     cleaning()
-
-
-def analysis():
-
-    engine = get_engine()
-
-    sql_files = [
-        'avg_approval_time_by_payment_type.sql'
-    ]
-
-    with engine.begin() as conn:
-        for sql_file in sql_files:
-            sql_query = text((SQL_DIR / 'analysis' / sql_file).read_text())
-            conn.execute(sql_query)
-            print(f"Executed {sql_file}")
-
-if __name__ == '__main__':
-    analysis()
-
+    
