@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SQL_DIR = BASE_DIR / 'sql'
 load_dotenv(BASE_DIR / '.env')
 
-def cleaning():
+def clean():
 
     engine = get_engine()
 
@@ -30,5 +30,5 @@ def cleaning():
             print(f"Executed {sql_file}")
 
 if __name__ == '__main__':
-    cleaning()
+    clean()
     

@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SQL_DIR = BASE_DIR / 'sql'
 load_dotenv(BASE_DIR / '.env')
 
-def analysis():
+def analyse():
 
     engine = get_engine()
 
@@ -25,4 +25,4 @@ def analysis():
             print(f"Executed {sql_file}")
 
 if __name__ == '__main__':
-    analysis()
+    analyse()
