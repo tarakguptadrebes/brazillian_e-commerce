@@ -2,8 +2,9 @@ DROP TABLE IF EXISTS avg_fulfillment_duration_by_seller;
 
 CREATE TABLE avg_fulfillment_duration_by_seller AS
 WITH order_fulfillment_duration AS (
-    SELECT
+    SELECT DISTINCT
         oi.seller_id,
+        oi.order_id,
         o.order_delivered_carrier_date - o.order_approved_at AS fulfillment_duration,
         o.order_delivered_customer_date - o.order_purchase_timestamp AS delivery_time
     FROM order_items_clean AS oi
@@ -16,8 +17,8 @@ WITH order_fulfillment_duration AS (
 )
 SELECT 
     seller_id,
-    ROUND((EXTRACT(EPOCH FROM AVG(fulfillment_duration)) / 86400)::numeric, 2) AS avg_fulfillment_duration_days,
-    ROUND((EXTRACT(EPOCH FROM AVG(delivery_time)) / 86400)::numeric, 2) AS avg_delivery_time_days
+    ROUND((EXTRACT(EPOCH FROM AVG(fulfillment_duration)) / 86400)::numeric, 2) AS avg_fulfillment_duration,
+    ROUND((EXTRACT(EPOCH FROM AVG(delivery_time)) / 86400)::numeric, 2) AS avg_delivery_time
 FROM order_fulfillment_duration
 GROUP BY seller_id;
 

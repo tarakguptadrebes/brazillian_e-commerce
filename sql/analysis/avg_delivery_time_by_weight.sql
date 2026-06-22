@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS avg_delivery_time_by_weight;
 
 CREATE TABLE avg_delivery_time_by_weight AS
-WITH order_weight AS(
+WITH order_weights AS(
 	SELECT 
 	    oi.order_id,
 	    SUM(p.product_weight_g) AS order_weight_g,
@@ -23,7 +23,7 @@ SELECT
     	ELSE '>=10kg'
 	END AS weight_class,
 	AVG(delivery_time) AS avg_delivery_time
-FROM order_weight
+FROM order_weights
 GROUP BY weight_class
 ORDER BY avg_delivery_time;
 

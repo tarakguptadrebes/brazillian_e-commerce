@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "Tarak Gupta Drebes",email = "tarak.guptadrebes@gmail.com"}
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "sqlalchemy (>=2.0.50,<3.0.0)",
     "psycopg2-binary (>=2.9.12,<3.0.0)",
@@ -14,8 +14,12 @@ dependencies = [
     "kagglehub (>=1.0.1,<2.0.0)",
     "plotly (>=6.8.0,<7.0.0)",
     "nbformat (>=5.10.4,<6.0.0)",
+    "xgboost (>=3.3.0,<4.0.0)",
+    "scikit-learn (>=1.9.0,<2.0.0)",
 ]
 
+[tool.poetry]
+packages = [{include = "brazillian_e_commerce", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
