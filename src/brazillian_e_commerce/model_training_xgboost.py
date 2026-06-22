@@ -1,7 +1,7 @@
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import root_mean_squared_error, r2_score
+from sklearn.metrics import root_mean_squared_error, r2_score, mean_absolute_error, median_absolute_error
 from brazillian_e_commerce.database import get_engine
 
 engine = get_engine()
@@ -40,5 +40,22 @@ model = xgb.XGBRegressor(
 model.fit(X_train, y_train)
 
 predictions = model.predict(X_test)
+
 print(f"R² Score: {r2_score(y_test, predictions):.4f}")
 print(f"RMSE: {root_mean_squared_error(y_test, predictions):.4f}")
+print(f"MAE: {mean_absolute_error(y_test, predictions):.4f}")
+print(f"MedAE: {median_absolute_error(y_test, predictions):.4f}")
+
+
+print("\nFeature Importance:")
+importance_scores = model.get_booster().get_score(importance_type='gain')
+
+total_gain = sum(importance_scores.values())
+feature_importance = {
+    feature: (gain / total_gain) * 100 
+    for feature, gain in importance_scores.items()
+}
+
+sorted_importance = sorted(feature_importance.items(), key=lambda x: x[1], reverse=True)
+for feature, percentage in sorted_importance:
+    print(f"- {feature}: {percentage:.2f}%")

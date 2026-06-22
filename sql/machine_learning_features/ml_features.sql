@@ -35,7 +35,7 @@ SELECT
     o.order_id,
 	us.seller_id,
     ROUND((EXTRACT(EPOCH FROM 
-        (o.order_delivered_carrier_date - o.order_purchase_timestamp)
+        (o.order_delivered_carrier_date - o.order_approved_at)
     ) / 86400)::numeric, 2) AS current_fulfillment_time,
     ROUND((EXTRACT(EPOCH FROM 
 		(o.order_delivered_customer_date - o.order_purchase_timestamp)
